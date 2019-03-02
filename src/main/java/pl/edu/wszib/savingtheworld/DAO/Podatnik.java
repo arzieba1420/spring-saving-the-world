@@ -1,6 +1,7 @@
 package pl.edu.wszib.savingtheworld.DAO;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -8,12 +9,15 @@ public class Podatnik {
 
     @Id //klucz podstawowy
     @GeneratedValue
-    Long pesel;
+    public Long pesel;
 
     @Column(nullable=false)
-    String imie;
+    public String imie;
     @Column(nullable=false)
-    String nazwisko;
+    public String nazwisko;
+
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = Faktura.class)
+    List<Faktura> faktury;
 
     public Podatnik(){};
 
@@ -21,6 +25,14 @@ public class Podatnik {
 
         this.imie = imie;
         this.nazwisko = nazwisko;
+    }
+
+    public List<Faktura> getFaktury() {
+        return faktury;
+    }
+
+    public void setFaktury(List<Faktura> faktury) {
+        this.faktury = faktury;
     }
 
     public Long getPesel() {
