@@ -22,25 +22,6 @@ public class InitComponent {
     @Autowired
     FakturaDAO fakturaDAO;
 
-    @PostConstruct
-    public void init(){
-        IntStream.range(0,10).forEach(i->{
-            Faktura faktura = new Faktura(3.50,"text"+i);
-            faktura = fakturaDAO.save(faktura);
-        });
-
-        List<Faktura> wszystkie = fakturaDAO.findAll();
-
-        IntStream.range(0,50).forEach(i-> {
-
-            Podatnik podatnik = new Podatnik("Test"+i,"TestN"+i);
-            podatnik.setFaktury(Arrays.asList(wszystkie.get(i%10),wszystkie.get((i+5)%10)));
-            podatnik= podatnikDAO.save(podatnik);
-            podatnik.getImie();
-        });
-        System.out.println("");
-
-    }
 
 
     @PreDestroy

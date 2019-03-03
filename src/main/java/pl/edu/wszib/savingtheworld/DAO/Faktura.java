@@ -1,10 +1,11 @@
 package pl.edu.wszib.savingtheworld.DAO;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -18,7 +19,10 @@ public class Faktura {
     String tytuł;
 
 
-
+    @ManyToOne(fetch = FetchType.EAGER,  optional = false)
+    @JoinColumn (name="podatnik_pesel", nullable=false)
+            @OnDelete(action = OnDeleteAction.CASCADE)
+    Podatnik podatnik;
 
     public Faktura(){
 
@@ -57,5 +61,13 @@ public class Faktura {
 
     public void setTytuł(String tytuł) {
         this.tytuł = tytuł;
+    }
+
+    public Podatnik getPodatnik() {
+        return podatnik;
+    }
+
+    public void setPodatnik(Podatnik podatnik) {
+        this.podatnik = podatnik;
     }
 }

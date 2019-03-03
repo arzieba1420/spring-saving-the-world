@@ -7,5 +7,6 @@ import java.util.List;
 
 @Repository
 public interface FakturaDAO extends CrudRepository <Faktura,Long>{
-    List<Faktura> findAll();
+    Iterable <Faktura> findByTytuł(String tytuł);
+    List<Faktura> findAllByPodatnik(Podatnik podatnik);
 }
