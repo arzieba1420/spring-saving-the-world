@@ -16,7 +16,7 @@ public class Podatnik {
     @Column(nullable=false)
     public String nazwisko;
 
-    @OneToMany(mappedBy = "podatnik", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "podatnik", fetch = FetchType.EAGER)
     List<Faktura> faktury;
 
     public Podatnik(){};

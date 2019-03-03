@@ -1,9 +1,6 @@
 package pl.edu.wszib.savingtheworld.DAO;
 
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +18,6 @@ public class Faktura {
 
     @ManyToOne(fetch = FetchType.EAGER,  optional = false)
     @JoinColumn (name="podatnik_pesel", nullable=false)
-            @OnDelete(action = OnDeleteAction.CASCADE)
     Podatnik podatnik;
 
     public Faktura(){

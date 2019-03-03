@@ -22,6 +22,27 @@ public class InitComponent {
     @Autowired
     FakturaDAO fakturaDAO;
 
+    @PostConstruct
+    public void init(){
+
+        IntStream.range(0,50).forEach(i-> {
+            Podatnik podatnik = new Podatnik("Test"+i,"TestN"+i);
+            Podatnik podatnikSaved= podatnikDAO.save(podatnik);
+
+
+
+        IntStream.range(0,10000).forEach(j->{
+            Faktura faktura = new Faktura(3.50,"text"+j);
+            faktura.setPodatnik(podatnikSaved);
+            faktura = fakturaDAO.save(faktura);
+        });
+
+        });
+
+
+        System.out.println("");
+
+    }
 
 
     @PreDestroy
